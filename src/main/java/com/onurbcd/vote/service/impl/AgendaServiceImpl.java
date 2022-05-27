@@ -1,6 +1,7 @@
 package com.onurbcd.vote.service.impl;
 
 import com.onurbcd.vote.dto.AgendaDto;
+import com.onurbcd.vote.dto.AgendaResult;
 import com.onurbcd.vote.persistency.repository.AgendaRepository;
 import com.onurbcd.vote.service.AgendaService;
 import com.onurbcd.vote.service.mapper.AgendaToDtoMapper;
@@ -45,5 +46,10 @@ public class AgendaServiceImpl implements AgendaService {
     @Override
     public boolean existsById(UUID id) {
         return repository.existsById(id);
+    }
+
+    @Override
+    public AgendaResult getResult(UUID id) {
+        return repository.getResult(id);
     }
 }

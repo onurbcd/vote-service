@@ -12,6 +12,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -44,6 +46,9 @@ public class Session {
 
     @NotNull
     private Boolean opened;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "session")
+    private List<Vote> votes = new ArrayList<>();
 
     public boolean isClosed() {
         var end = start.plusMinutes(duration);

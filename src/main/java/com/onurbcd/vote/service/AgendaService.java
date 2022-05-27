@@ -1,6 +1,7 @@
 package com.onurbcd.vote.service;
 
 import com.onurbcd.vote.dto.AgendaDto;
+import com.onurbcd.vote.dto.AgendaResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,4 +14,6 @@ public interface AgendaService {
     Page<AgendaDto> getAll(Pageable pageable);
 
     boolean existsById(UUID id);
+
+    AgendaResult getResult(UUID id);
 }
