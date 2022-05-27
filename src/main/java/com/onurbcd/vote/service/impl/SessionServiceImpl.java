@@ -11,6 +11,8 @@ import com.onurbcd.vote.service.mapper.SessionToEntityMapper;
 import com.onurbcd.vote.service.validation.SessionValidationService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +64,11 @@ public class SessionServiceImpl implements SessionService {
     @Nullable
     public Session findById(UUID id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<SessionDto> getAll(Pageable pageable) {
+        return repository.findAll(pageable).map(toDtoMapper);
     }
 
     private void close(UUID agendaId) {
