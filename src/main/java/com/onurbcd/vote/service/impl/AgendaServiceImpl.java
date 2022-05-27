@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AgendaServiceImpl implements AgendaService {
 
@@ -38,5 +40,10 @@ public class AgendaServiceImpl implements AgendaService {
     @Override
     public Page<AgendaDto> getAll(Pageable pageable) {
         return repository.findAll(pageable).map(toDtoMapper);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return repository.existsById(id);
     }
 }

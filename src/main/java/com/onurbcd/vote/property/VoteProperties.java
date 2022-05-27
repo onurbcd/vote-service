@@ -10,4 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 public class VoteProperties {
+
+    private Integer minSessionDuration;
 }

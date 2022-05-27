@@ -41,4 +41,12 @@ public class Session {
     @Min(1)
     @Max(30)
     private Integer duration;
+
+    @NotNull
+    private Boolean opened;
+
+    public boolean isClosed() {
+        var end = start.plusMinutes(duration);
+        return end.isBefore(LocalDateTime.now());
+    }
 }
