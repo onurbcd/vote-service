@@ -1,6 +1,7 @@
 package com.onurbcd.vote.service.impl;
 
 import com.onurbcd.vote.dto.SessionDto;
+import com.onurbcd.vote.persistency.entity.Session;
 import com.onurbcd.vote.persistency.predicate.SessionPredicateBuilder;
 import com.onurbcd.vote.persistency.repository.SessionRepository;
 import com.onurbcd.vote.property.VoteProperties;
@@ -10,6 +11,7 @@ import com.onurbcd.vote.service.mapper.SessionToEntityMapper;
 import com.onurbcd.vote.service.validation.SessionValidationService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +56,12 @@ public class SessionServiceImpl implements SessionService {
 
         session = repository.save(session);
         return toDtoMapper.apply(session);
+    }
+
+    @Override
+    @Nullable
+    public Session findById(UUID id) {
+        return repository.findById(id).orElse(null);
     }
 
     private void close(UUID agendaId) {
